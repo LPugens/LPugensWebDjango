@@ -12,6 +12,8 @@ WORKDIR /home/web/code
 
 COPY --chown=web:web . ./
 
-EXPOSE 80
+EXPOSE 8000
 
 RUN pip install -r requirements/base.txt
+
+CMD python manage.py runserver 0.0.0.0:8000
