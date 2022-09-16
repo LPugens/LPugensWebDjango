@@ -12,4 +12,6 @@ WORKDIR /home/web/code
 
 COPY --chown=web:web . ./
 
+EXPOSE 80
+
 RUN pip install -r requirements/base.txt
