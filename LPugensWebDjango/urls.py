@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path
+from django.views import View
+
+
+# status endpoint for health checks
+class StatusView(View):
+    def get(self, request, *args, **kwargs):
+        return JsonResponse({"status": "OK"}, status=200)
+
 
 urlpatterns = [
+    # A status endpoint for health-checks
+    path("status/", view=StatusView.as_view(), name="status"),
     path('admin/', admin.site.urls),
 ]
