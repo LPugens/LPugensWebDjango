@@ -14,6 +14,11 @@ COPY --chown=web:web . ./
 
 EXPOSE 8000
 
+USER root
 RUN pip install -r requirements/base.txt
+RUN pip install -r requirements/prod.txt
 
-CMD python manage.py runserver 0.0.0.0:8000
+USER web
+RUN chmod +x ./launch_scripts/prod.sh
+
+CMD ["./launch_scripts/prod.sh"]
